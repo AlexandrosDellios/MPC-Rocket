@@ -1,15 +1,22 @@
 # 🚀 6-DOF Rocket Landing: Nonlinear & Robust MPC
-**Implementing high-precision vertical descent and landing using advanced Model Predictive Control architectures.**
+
+![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![MPC](https://img.shields.io/badge/MPC-%23EE4C2C.svg?style=for-the-badge&logo=diagramsdotnet&logoColor=white)
+
+>**Implementing high-precision vertical descent and landing using advanced Model Predictive Control architectures.**
 
 ---
 
 ## 📌 Project Overview
-This project involves the design and implementation of a comprehensive control suite for a 6-DOF rocket landing mission. [cite_start]The system navigates from linearized subsystem control to centralized **Nonlinear MPC**, addressing real-world challenges such as **external disturbances**, **model mismatches**, and **recursive feasibility**[cite: 1529, 1544, 1964].
 
-> [!TIP]
-> **Insert GIF here:** *A video showing the rocket successfully stabilizing from a 30° roll or performing a precision landing.*
+<img src="assets/1.png" width="400" align="right" alt="rocket trajectory">
 
----
+This project involves the design and implementation of a comprehensive control suite for a 6-DOF rocket landing mission. The system navigates from linearized subsystem control to centralized **Nonlinear MPC**, addressing real-world challenges such as **external disturbances**, **model mismatches**, and **recursive feasibility**.
+
+By leveraging the **CasADi** framework and a custom **RK4 integrator**, the controller achieves high-precision vertical descent even under extreme initial conditions like a 30° roll.
+
+<br clear="right"/>
+
 
 ## 🏗️ System Architecture & Modeling
 
@@ -36,8 +43,11 @@ To guarantee a safe landing ($z \ge 0$) under additive disturbances, a **Robust 
 Integrated a **Luenberger disturbance observer** to eliminate steady-state errors caused by mass mismatches (e.g., fuel consumption or payload changes).
 * **Tuning:** Observer poles were placed at $[0.7, 0.75]$ to balance convergence speed with noise sensitivity.
 
-> [!NOTE]
-> **Insert Plot here:** *Convergence of the disturbance estimate ($d$) vs. time from the project report.*
+<div align="center">
+  <img src="assets/2.png" width="400" alt="invariant set">
+  <img src="assets/3.png" width="342" alt="disturbance">
+  <p><em>Left: Invariant set of Robust MPC controller Right: Disturbance rejection</em></p>
+</div>
 
 ---
 
